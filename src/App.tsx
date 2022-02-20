@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { CharBoxItem } from './components/CharBoxItem'
+import { CharBoxRow } from './components/CharBoxRow'
+import { CharBoxState } from './common'
+
 
 function App() {
+
+  const charBoxList: Charbox []  = [];
+  charBoxList.length = 5;
+  charBoxList.fill({character: '', state: CharBoxState.initial});
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <CharBoxRow charBoxList={charBoxList} />
+      
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
