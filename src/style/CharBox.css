@@ -1,0 +1,25 @@
+.charbox {
+    color: white;
+    text-align: center;
+    width: 62px;
+    height: 62px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px; 
+}
+.charbox_init {
+    border: 1.9px solid #646e82;
+}
+.charbox_grey {
+    border: 2px solid #373d48;
+    background-color: #373d48;
+}
+.charbox_yellow {
+    border: 2px solid #b38f00;
+    background-color: #b38f00;
+}
+.charbox_green {
+    border: 2px solid #009900;
+    background-color: #009900;
+}
