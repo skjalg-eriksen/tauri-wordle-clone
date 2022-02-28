@@ -1,3 +1,8 @@
+.charboxtable {
+    display: grid;
+    justify-content: center;
+}
+
 .charbox {
     color: white;
     text-align: center;
@@ -7,9 +12,10 @@
     flex-direction: column;
     justify-content: center;
     margin: 10px; 
+    text-transform: uppercase;
 }
 .charbox_init {
-    border: 1.9px solid #646e82;
+    border: 2px solid #646e82;
 }
 .charbox_grey {
     border: 2px solid #373d48;
