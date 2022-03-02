@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CharBoxState } from './common';
 import { CharBoxTable } from './components/CharBoxTable';
+import { isWordInList, checkWord } from './gamelogic';
 
 const charBoxList_initial: Charbox [][]  = [];
 
@@ -11,8 +12,6 @@ for(let i = 0; i < 6; i++){
       charBoxList_initial[i].push({character: '', state: CharBoxState.initial, keynum: count});
     }  
 } 
-
-
 
 
 function App() {
@@ -28,29 +27,7 @@ function App() {
               if (charCounter >= charBoxList[rowCounter].length){
                 break;
               }
-           /*    const newRow: Charbox [][] = [];
-              for (let i = 0; i < charBoxList.length; i++){
-                if (rowCounter === i){
-                  // add a new list to construct the row
-                  newRow.push([]);
-                  for (let j = 0; j < charBoxList[rowCounter].length;  j++){
-                    if (j === charCounter){
-                      newRow[i].push({character:  event.key, 
-                                          state:  charBoxList[i][j].state, 
-                                          keynum: charBoxList[i][j].keynum});
-                    }else{
-                      newRow[i].push({character:  charBoxList[i][j].character, 
-                                          state:  charBoxList[i][j].state, 
-                                          keynum: charBoxList[i][j].keynum});
-                    }
-                    
-                  }
-                }else{
-                  // use the old row
-                  newRow.push(charBoxList[i]);
-                }
-              }
-   */
+
               charBoxList[rowCounter][charCounter].character = event.key;
               charCounter++;
               setCharbox([...charBoxList]);
@@ -59,25 +36,30 @@ function App() {
               break;
   
           case 'Enter':
-              // if a valid word has been entered check correct characters
-              //increment the row index counter
-              
               //check if row is filled
               if (charCounter < 5){
                 break;
               }
 
+              //check if word is in the word list
+              if (!isWordInList(charBoxList[rowCounter])){
+                alert('word not in list');
+                break;
+              }
+
+              const result: CharBoxState [] = checkWord(charBoxList[rowCounter]);
+
+              for(let i = 0; i < result.length; i++){
+                charBoxList[rowCounter][i].state = result[i];
+              }
+
+              setCharbox([...charBoxList]);
               rowCounter++;
               charCounter = 0;
               console.log('enter')
               break;
   
           case 'Backspace':
-              // if backspace the list containg the characters
-     /*          const newRow_: Charbox [][] = [];
-              for (let i = 0; i < charBoxList.length; i++){ newRow_.push(charBoxList[i]);}
-              newRow_[rowCounter][charCounter-1].character=""; */
-
               if (charCounter <= 0){break;}
 
               charBoxList[rowCounter][charCounter-1].character = '';
