@@ -1,6 +1,12 @@
-.charboxtable {
+.App {
     display: grid;
     justify-content: center;
+}
+
+.charbox h1{
+    display: table;
+    margin: auto;
+    padding-top: 10px;
 }
 
 .charbox {
@@ -8,7 +14,7 @@
     text-align: center;
     width: 62px;
     height: 62px;
-    display: inline-flex;
+    display:inline flow-root;
     flex-direction: column;
     justify-content: center;
     margin: 10px; 

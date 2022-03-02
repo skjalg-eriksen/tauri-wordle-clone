@@ -1,5 +1,5 @@
 import React from 'react'
-import '../style/CharBox.css'
+import '../style/App.css'
 import { CharBoxState } from '../common';
 
 interface props {
