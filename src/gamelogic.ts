@@ -22,29 +22,31 @@ function toString(charboxrow: Charbox[]){
 
 function checkWord(charboxrow: Charbox[]){
     console.log(hidden_word);
-    let result: CharBoxState[] = []; 
+    const result: CharBoxState[] = []; 
     result.length = 5; 
     result.fill(CharBoxState.grey);
     
     // check if theres green characters
-    let tmp_word = hidden_word;
+    const unmatched = []
     for (let i = 0; i < charboxrow.length; i++){
         if (charboxrow[i].character == hidden_word.at(i)){
             result[i] = CharBoxState.green;
+        }else{
+            unmatched.push(hidden_word.at(i))
         }
     }
 
     // check if theres yellow characters
     for (let i = 0; i < charboxrow.length; i++){
-        if (result[i] == CharBoxState.green){
+         if (result[i] == CharBoxState.green){
             continue;
         }
-
-        if (hidden_word.includes(charboxrow[i].character)){
+ 
+        if (unmatched.includes(charboxrow[i].character)){
             result[i] = CharBoxState.yellow;
+            unmatched.splice(unmatched.indexOf(charboxrow[i].character), 1);
         }
     }
-
 
     return result;
 }

@@ -37,9 +37,7 @@ function App() {
   
           case 'Enter':
               //check if row is filled
-              if (charCounter < 5){
-                break;
-              }
+              if (charCounter < 5){break;}
 
               //check if word is in the word list
               if (!isWordInList(charBoxList[rowCounter])){
@@ -66,6 +64,9 @@ function App() {
               charCounter--;
               setCharbox([...charBoxList]);
               break;
+          case 'Space':
+            window.location.reload();
+            break;
               
       }
     }); 

@@ -3,7 +3,6 @@ import { CharBoxItem } from './CharBoxItem';
 
 interface props {
     charBoxList: Charbox[];
-  
 }
 
 
