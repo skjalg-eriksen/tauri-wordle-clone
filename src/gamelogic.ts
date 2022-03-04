@@ -16,14 +16,14 @@ function randomWord() {
 
 function toString(charboxrow: Charbox[]){
     let word = '';
-    charboxrow.map((letter) =>{word = word+ letter.character});
+    charboxrow.map((letter) =>{word = word + letter.character});
     return word;
 }
 
 function checkWord(charboxrow: Charbox[]){
     console.log(hidden_word);
     const result: CharBoxState[] = []; 
-    result.length = 5; 
+    result.length = charboxrow.length; 
     result.fill(CharBoxState.grey);
     
     // check if theres green characters

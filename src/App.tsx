@@ -1,3 +1,4 @@
+import { getEventListeners } from 'events';
 import React, { useState, useEffect } from 'react';
 import { CharBoxState } from './common';
 import { CharBoxTable } from './components/CharBoxTable';
@@ -20,6 +21,14 @@ function App() {
   let charCounter = 0;
 
   useEffect(() =>{
+    // event listener to remove animation classname when animation has finished
+    window.addEventListener('animationend', (event) =>{
+      let items = document.getElementsByClassName('error');
+      for (let i = 0; i < items.length; i++) {
+        items[i].classList.remove('error');
+      }
+    });
+
     // event listener when a key is pressed
     window.addEventListener('keypress', (event: KeyboardEvent) => {
       switch(event.code){
@@ -31,8 +40,6 @@ function App() {
               charBoxList[rowCounter][charCounter].character = event.key;
               charCounter++;
               setCharbox([...charBoxList]);
-              
-              console.log('character', event.key, charCounter);
               break;
   
           case 'Enter':
@@ -41,20 +48,21 @@ function App() {
 
               //check if word is in the word list
               if (!isWordInList(charBoxList[rowCounter])){
-                alert('word not in list');
+                let rows = document.getElementsByClassName('charboxrow');
+                rows[rowCounter].classList.add('error');
                 break;
               }
 
+              // get results of guess
               const result: CharBoxState [] = checkWord(charBoxList[rowCounter]);
-
               for(let i = 0; i < result.length; i++){
                 charBoxList[rowCounter][i].state = result[i];
               }
 
+              // update and render results
               setCharbox([...charBoxList]);
               rowCounter++;
               charCounter = 0;
-              console.log('enter')
               break;
   
           case 'Backspace':
