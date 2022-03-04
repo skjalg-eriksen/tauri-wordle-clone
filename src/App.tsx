@@ -32,6 +32,7 @@ function App() {
     // event listener when a key is pressed
     window.addEventListener('keypress', (event: KeyboardEvent) => {
       switch(event.code){
+          // if its a character key the event code follows the Key+character format
           case 'Key'+event.key.toUpperCase():
               if (charCounter >= charBoxList[rowCounter].length){
                 break;
@@ -42,6 +43,7 @@ function App() {
               setCharbox([...charBoxList]);
               break;
   
+          // make a guess button
           case 'Enter':
               //check if row is filled
               if (charCounter < 5){break;}
@@ -64,14 +66,15 @@ function App() {
               rowCounter++;
               charCounter = 0;
               break;
-  
+          
+          // remove character
           case 'Backspace':
               if (charCounter <= 0){break;}
-
               charBoxList[rowCounter][charCounter-1].character = '';
               charCounter--;
               setCharbox([...charBoxList]);
               break;
+              
           case 'Space':
             window.location.reload();
             break;
